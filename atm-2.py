@@ -1,8 +1,11 @@
 class ATM:
 
     def __init__(self):
-        self.pin = ""
-        self.balance = 0
+        self.__pin = ""
+        # py change the name internally into _ATM__pin ( name mangling)  It’s to avoid accidental conflicts and misuse.
+        self.__balance = 0
+        # py change the name internally into _ATM__balance
+
         self.menu()
 
     def menu(self):
@@ -34,24 +37,24 @@ class ATM:
                 break
 
     def create_pin(self):
-        self.pin = input("Enter your pin: ")
+        self.__pin = input("Enter your pin: ")
         print("PIN SET SUCCESSFULLY!!!!")
 
     def deposit(self):
         temp = input("Enter your pin: ")
-        if temp == self.pin:
+        if temp == self.__pin:
             amount = int(input("Enter the amount"))
-            self.balance = self.balance + amount
+            self.__balance = self.__balance + amount
             print("DEPOSIT SUCCESS!!")
         else:
             print("INVALID PIN")
 
     def withdraw(self):
         temp = input("Enter your pin: ")
-        if temp == self.pin:
+        if temp == self.__pin:
             amount = int(input("Enter the amount"))
-            if amount < self.balance:
-                self.balance = self.balance - amount
+            if amount < self.__balance:
+                self.__balance = self.__balance - amount
                 print("operation successful")
             else:
                 print("Insufficient funds!!!")
@@ -60,8 +63,8 @@ class ATM:
 
     def check_balance(self):
         temp = input("Enter the pin: ")
-        if temp == self.pin:
-            print(self.balance)
+        if temp == self.__pin:
+            print(self.__balance)
         else:
             print("Invalid pin")
 
