@@ -1,12 +1,31 @@
 class ATM:
+    # Static Variable
+    __counter = 1
 
     def __init__(self):
+
+        # Instance variables
         self.__pin = ""
         # py change the name internally into _ATM__pin ( name mangling)  It’s to avoid accidental conflicts and misuse.
         self.__balance = 0
         # py change the name internally into _ATM__balance
 
+        self.serialno = ATM.counter
+        ATM.__counter = ATM.__counter + 1
+
         self.menu()
+
+    @staticmethod
+    # They dont need objects to run as they are static methods
+    def get_counter():
+        return ATM.__counter
+
+    @staticmethod
+    def set_counter(new):
+        if type(new) == int:
+            ATM.__counter = new
+        else:
+            print("nowt allowed")
 
     def menu(self):
         while True:
@@ -70,3 +89,4 @@ class ATM:
 
 
 atm = ATM()
+print(atm.serialno)
